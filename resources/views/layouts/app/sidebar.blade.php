@@ -16,9 +16,14 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
 
-                    <flux:sidebar.item icon="folder" :href="route('categories.index')" :current="request()->routeIs('categories.index')" wire:navigate>
+                    <flux:sidebar.item icon="rectangle-stack" :href="route('categories.index')" :current="request()->routeIs('categories.index')" wire:navigate>
                         {{ __('Categories') }}
                     </flux:sidebar.item>
+                    
+                    <flux:sidebar.item icon="credit-card" :href="route('budgets.index')" :current="request()->routeIs('budgets.index')" wire:navigate>
+                        {{ __('Budgets') }}
+                    </flux:sidebar.item>
+
 
                 </flux:sidebar.group>
             </flux:sidebar.nav>

@@ -55,4 +55,9 @@ class Budget extends Model
 
         return ($this->getSpentAmount() / $this->amount) * 100;
     }
+
+        public function isOverBudget(): bool
+    {
+        return $this->getSpentAmount() > $this->amount;
+    }
 }
