@@ -141,7 +141,7 @@ new class extends Component
 
         <!-- Overall Summary -->
         <div class="bg-white dark:bg-neutral-700 rounded-xl shadow-md p-6 mb-8">
-            <h3 class="text-lg font-semibold text-gray-400 mb-4">Overall Budget Summary</h3>
+            <h3 class="text-lg font-semibold text-gray-200 mb-4">Overall Budget Summary</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                 <div>
@@ -155,14 +155,14 @@ new class extends Component
                     </p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 mb-1">Remaining</p>
+                    <p class="text-sm text-gray-400 mb-1 dark:text-gray-200">Remaining</p>
                     <p class="text-2xl font-bold {{ $this->totalRemaining < 0 ? 'text-red-600' : 'text-green-600' }}">
                         ${{ number_format(abs($this->totalRemaining), 2) }}
                         @if($this->totalRemaining < 0) <span class="text-sm">over</span> @endif
                     </p>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 mb-1">Usage</p>
+                    <p class="text-sm text-gray-400 mb-1 dark:text-gray-200">Usage</p>
                     <p
                         class="text-2xl font-bold {{ $this->overallPercentage > 100 ? 'text-red-600' : ($this->overallPercentage > 80 ? 'text-yellow-600' : 'text-gray-900 dark:text-gray-200') }}">
                         {{ number_format($this->overallPercentage, 1) }}%

@@ -24,6 +24,13 @@
                         {{ __('Budgets') }}
                     </flux:sidebar.item>
 
+                    <flux:sidebar.item icon="banknotes" :href="route('expenses.index')" :current="request()->routeIs('expenses.index')" wire:navigate>
+                        {{ __('Expenses') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="arrow-path" :href="route('recurring-expenses.index')" :current="request()->routeIs('recurring-expenses.index')" wire:navigate>
+                        {{ __('Recurring Expenses') }}
+                    </flux:sidebar.item>
 
                 </flux:sidebar.group>
             </flux:sidebar.nav>
