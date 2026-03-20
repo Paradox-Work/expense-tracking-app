@@ -31,8 +31,8 @@ new class extends Component
         if(empty($this->startDate)){
             $this->startDate = now()->startOfMonth()->format("Y-m-d");
         }
-        if(empty($this->startDate)){
-            $this->startDate = now()->endOfMonth()->format("Y-m-d");
+        if(empty($this->endDate)){
+            $this->endDate = now()->endOfMonth()->format("Y-m-d");
         }
     }
 
@@ -65,7 +65,7 @@ new class extends Component
         $query = Expense::with('category')
         ->forUser(Auth::user()->id);
 
-        //apply search filter
+        //search filter
 
         if($this->search){
             $query->where('title', 'like', '%'.$this->search.'%')
@@ -80,8 +80,8 @@ new class extends Component
             $query->whereDate('date', '>=', $this->startDate);
         }
 
-        if($this->startDate){
-            $query->whereDate('date', '<=', $this->startDate);
+        if($this->endDate){
+            $query->whereDate('date', '<=', $this->endDate);
         }
 
         return $query->orderBy($this->sortBy, $this->sortDirection)
@@ -89,6 +89,7 @@ new class extends Component
 
     }
 
+    #[Computed]
     public function total(){
         $query = Expense::forUser(Auth::user()->id);
         
@@ -106,7 +107,7 @@ new class extends Component
         }
 
         if($this->startDate){
-            $query->whereDate('date', '<=', $this->startDate);
+           $query->whereDate('date', '<=', $this->endDate);
         }
 
         return $query->sum('amount');
@@ -181,7 +182,7 @@ new class extends Component
         <div class="bg-white rounded-xl shadow-md p-6 mb-6 dark:bg-neutral-700">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Filters</h3>
-                <button wire:click="$toggle('showFilters')" class="text-purple-600 hover:text-purple-700 dark:text-gray-400 dark:hover:text-gray-200 text-sm font-medium">
+                <button wire:click="$toggle('showFilters')" class="text-amber-400 hover:text-amber-600 dark:text-gray-400 dark:hover:text-gray-200 text-sm font-medium">
                     {{ $showFilters ? 'Hide' : 'Show' }} Filters
                 </button>
             </div>
@@ -193,14 +194,14 @@ new class extends Component
                     <input type="text" 
                            wire:model.live.debounce.300ms="search" 
                            placeholder="Search expenses..."
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-neutral-700 dark:text-gray-200">
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent dark:bg-neutral-700 dark:text-gray-200">
                 </div>
 
                 <!-- Category Filter -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">Category</label>
                     <select wire:model.live="selectedCategory" 
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-neutral-700 dark:text-gray-200">
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent dark:bg-neutral-700 dark:text-gray-200">
                         <option value="">All Categories</option>
                         @foreach($this->categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -213,7 +214,7 @@ new class extends Component
                     <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">Start Date</label>
                     <input type="date" 
                            wire:model.live="startDate"
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent">
                 </div>
 
                 <!-- End Date -->
@@ -221,17 +222,17 @@ new class extends Component
                     <label class="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-200">End Date</label>
                     <input type="date" 
                            wire:model.live="endDate"
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-400 focus:border-transparent">
                 </div>
             </div>
 
             @if($showFilters)
                 <div class="mt-4 flex items-center justify-between pt-4 border-t border-gray-200 ">
-                    <div class="text-sm text-gray-600">
+                    <div class="text-sm text-gray-600 dark:text-gray-200">
                         Showing {{ $this->expenses->count() }} of {{ $this->expenses->total() }} expenses
-                        <span class="font-semibold text-gray-900">• Total: ${{ number_format($this->total, 2) }}</span>
+                        <span class="font-semibold text-gray-900 dark:text-gray-200">•  Total: ${{ number_format($this->total, 2) }}</span>
                     </div>
-                    <button wire:click="clearFilters" class="text-sm text-purple-600 hover:text-purple-700 font-medium dark:text-gray-200 dark:hover:text-gray-400">
+                    <button wire:click="clearFilters" class="text-sm text-amber-400 hover:text-amber-600 font-medium dark:text-gray-200 dark:hover:text-gray-400">
                         Clear Filters
                     </button>
                 </div>
@@ -285,7 +286,7 @@ new class extends Component
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200">
+                    <tbody class="divide-y divide-gray-200 dark:bg-neutral-300">
                         @forelse($this->expenses as $expense)
                             <tr class="hover:bg-gray-50 transition" wire:key="expense-{{ $expense->id }}">
                                 <td class="px-6 py-4 whitespace-nowrap">
@@ -316,7 +317,7 @@ new class extends Component
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-600 max-w-xs truncate">
+                                    <div class="text-sm text-gray-600 max-w-xs truncate dark:text-gray-900 p-2 rounded">
                                         {{ $expense->description ?: '—' }}
                                     </div>
                                 </td>
@@ -328,7 +329,7 @@ new class extends Component
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div class="flex items-center justify-end gap-2">
                                         <a href="/expenses/{{ $expense->id }}/edit" 
-                                           class="text-purple-600 hover:text-purple-900 transition">
+                                           class="text-amber-600 hover:text-amber-900 transition">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                             </svg>

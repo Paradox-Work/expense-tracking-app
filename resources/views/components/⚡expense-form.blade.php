@@ -71,8 +71,8 @@ new class extends Component
         $this->category_id = $expense->category_id;
         $this->type = $expense->type;
         $this->recurring_frequency = $expense->recurring_frequency;
-        $this->recurring_start_date = $expense->recurring_start_date->format('Y-m-d');
-        $this->recurring_end_date = $expense->recurring_end_date->format('Y-m-d');
+        $this->recurring_start_date = $expense->recurring_start_date?->format('Y-m-d');
+        $this->recurring_end_date = $expense->recurring_end_date?->format('Y-m-d');
     }
 
     #[Computed]
@@ -350,7 +350,7 @@ new class extends Component
             <!-- Form Actions -->
             <div class="flex items-center justify-between">
                 <a href="/expenses"
-                    class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 transition">
+                    class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 transition dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-400">
                     Cancel
                 </a>
                 <button type="submit"
