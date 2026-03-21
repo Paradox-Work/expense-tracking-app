@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Category;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 
 new class extends Component
 {
@@ -119,13 +120,18 @@ new class extends Component
                       ->orderBy('name')
                       ->get();
        }
+
+       public function render()
+    {        
+        return $this->view()->title($this->isEdit ? 'Edit Budget' : 'Create Budget');
+    }
 };
 ?>
 
 <div>
     <div class="min-h-screen bg-gray-50 dark:bg-neutral-800 rounded">
     <!-- Header -->
-    <div class="bg-white dark:bg-gray-600 shadow-sm border-b border-gray-200">
+    <div class="bg-white dark:bg-neutral-700 shadow-sm border-b border-gray-200">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex items-center justify-between">
                 <div>
@@ -164,7 +170,7 @@ new class extends Component
                         </label>
                         <select wire:model="month"
                                 id="month"
-                                class="w-full px-4 py-3 border dark:bg-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('month') border-red-500 @enderror">
+                                class="w-full px-4 py-3 border dark:bg-neutral-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('month') border-red-500 @enderror">
                             <option value="">Select Month</option>
                             @foreach($this->months as $monthOption)
                                 <option value="{{ $monthOption['value'] }}">{{ $monthOption['name'] }}</option>
@@ -182,7 +188,7 @@ new class extends Component
                         </label>
                         <select wire:model="year"
                                 id="year"
-                                class="w-full px-4 py-3 border dark:bg-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('year') border-red-500 @enderror">
+                                class="w-full px-4 py-3 border dark:bg-neutral-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('year') border-red-500 @enderror">
                             <option value="">Select Year</option>
                             @foreach($this->years as $yearOption)
                                 <option value="{{ $yearOption }}">{{ $yearOption }}</option>
@@ -212,7 +218,7 @@ new class extends Component
                         </label>
                         <select wire:model="category_id"
                                 id="category_id"
-                                class="w-full px-4 py-3 border dark:bg-gray-600 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('category_id') border-red-500 @enderror">
+                                class="w-full px-4 py-3 border dark:bg-neutral-700 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent @error('category_id') border-red-500 @enderror">
                             <option value="">Overall Budget (All Categories)</option>
                             @foreach($this->categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -221,7 +227,7 @@ new class extends Component
                         @error('category_id')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                        <p class="mt-2 text-sm text-gray-600">
+                        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                             Leave blank to create an overall budget, or select a category for specific tracking.
                         </p>
                     </div>
@@ -241,7 +247,7 @@ new class extends Component
                                    step="0.01"
                                    min="0"
                                    placeholder="0.00"
-                                   class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:bg-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg @error('amount') border-red-500 @enderror">
+                                   class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:bg-neutral-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg @error('amount') border-red-500 @enderror">
                         </div>
                         @error('amount')
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -338,7 +344,7 @@ new class extends Component
                         <p class="text-xs text-gray-500 mt-1">Clothes, electronics, household items</p>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-4 text-center">
+                <p class="text-xs text-gray-400 mt-4 text-center">
                     * These are general guidelines. Adjust based on your income and lifestyle.
                 </p>
             </div>

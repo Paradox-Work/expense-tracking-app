@@ -5,8 +5,9 @@ use App\Models\Category;
 use App\Models\Expense;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 
-new class extends Component
+new #[Title('Recurring Expenses')] class extends Component
 {
     public $showDeleteModal = false;
     public $expenseToDelete = null;

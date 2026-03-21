@@ -5,9 +5,10 @@ use App\Models\Budget;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 use Illuminate\Support\Facades\Auth;
 
-new class extends Component
+new #[Title('Budgets')] class extends Component
 {
      public $selectedMonth;
     public $selectedYear;

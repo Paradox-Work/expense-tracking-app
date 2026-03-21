@@ -3,8 +3,9 @@
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Title;
 
-new class extends Component
+new #[Title('Categories')] class extends Component
 {
     public $name = "";
 

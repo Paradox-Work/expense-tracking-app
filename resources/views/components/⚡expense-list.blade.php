@@ -6,8 +6,9 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 
-new class extends Component
+new #[Title('Expenses')] class extends Component
 {
 
     use withPagination;
@@ -143,6 +144,8 @@ new class extends Component
         $this->endDate = now()->endOfMonth()->format("Y-m-d");
         $this->resetPage();
      }
+
+    
 }
 ?>
 

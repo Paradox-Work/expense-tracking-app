@@ -6,8 +6,9 @@ use App\Models\Category;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 
-new class extends Component
+new #[Title('Expenses')] class extends Component
 {
 
 
@@ -118,6 +119,11 @@ new class extends Component
         return redirect()->route('expenses.index');
 
     }
+    
+     public function render()
+     {        
+         return $this->view()->title($this->isEdit ? 'Edit Expense' : 'Add New Expense');
+     }
 };
 ?>
 
