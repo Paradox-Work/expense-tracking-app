@@ -135,10 +135,10 @@ new #[Title('Expenses')] class extends Component
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900">
+                    <h1 class="text-3xl font-bold text-white">
                         {{ $isEdit ? 'Edit Expense' : 'Add New Expense' }}
                     </h1>
-                    <p class="text-gray-600 mt-1">{{ $isEdit ? 'Update expense details' : 'Record a new expense' }}</p>
+                    <p class="text-indigo-100 mt-1">{{ $isEdit ? 'Update expense details' : 'Record a new expense' }}</p>
                 </div>
                 <a href="/expenses" class="text-gray-600 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

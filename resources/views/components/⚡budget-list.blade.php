@@ -147,11 +147,11 @@ new #[Title('Budgets')] class extends Component
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                 <div>
                     <p class="text-sm text-gray-600 dark:text-gray-200 mb-1">Total Budget</p>
-                    <p class="text-2xl font-bold text-gray-400">${{ number_format($this->totalBudget, 2) }}</p>
+                    <p class="text-2xl font-bold text-gray-400 dark:text-white">${{ number_format($this->totalBudget, 2) }}</p>
                 </div>
                 <div>
                     <p class="text-sm text-gray-600 dark:text-gray-200 mb-1">Total Spent</p>
-                    <p class="text-2xl font-bold {{ $this->totalSpent > $this->totalBudget ? 'text-red-600' : 'text-gray-400' }}">
+                    <p class="text-2xl font-bold {{ $this->totalSpent > $this->totalBudget ? 'text-red-600' : 'text-white' }}">
                         ${{ number_format($this->totalSpent, 2) }}
                     </p>
                 </div>
@@ -344,16 +344,16 @@ new #[Title('Budgets')] class extends Component
 
         <!-- Tips -->
         @if($this->budgets->count() > 0)
-            <div class="mt-8 bg-blue-50 border border-blue-200 rounded-xl p-6">
+            <div class="mt-8 bg-blue-50 dark:bg-neutral-700 border border-blue-200 rounded-xl p-6">
                 <div class="flex items-start gap-3">
-                    <svg class="w-6 h-6 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-6 h-6 text-blue-600 dark:text-gray-300 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                             clip-rule="evenodd" />
                     </svg>
                     <div>
-                        <h4 class="font-semibold text-blue-900 mb-2">💡 Budget Tips</h4>
-                        <ul class="text-sm text-blue-800 space-y-1">
+                        <h4 class="font-semibold text-blue-900 mb-2 dark:text-gray-300"> Budget Tips</h4>
+                        <ul class="text-sm text-blue-800 space-y-1 dark:text-gray-300">
                             <li>• Set realistic budgets based on your historical spending patterns</li>
                             <li>• Create category-specific budgets for better control</li>
                             <li>• Review and adjust your budgets monthly</li>

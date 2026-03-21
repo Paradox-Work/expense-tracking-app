@@ -9,7 +9,7 @@ Route::view('/', 'welcome')->name('home');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::livewire('dashboard', 'dashboard')->name('dashboard');
     Route::livewire('/categories', 'categories')->name('categories.index');
     Route::livewire('/budgets', 'budget-list')->name('budgets.index');
     Route::livewire('/budgets/create', 'budget-form')->name('budget.create');
