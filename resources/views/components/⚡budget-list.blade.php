@@ -142,7 +142,7 @@ new #[Title('Budgets')] class extends Component
 
         <!-- Overall Summary -->
         <div class="bg-white dark:bg-neutral-700 rounded-xl shadow-md p-6 mb-8">
-            <h3 class="text-lg font-semibold text-gray-200 mb-4">Overall Budget Summary</h3>
+            <h3 class="text-lg font-semibold text-gray-400 mb-4">Overall Budget Summary</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
                 <div>
