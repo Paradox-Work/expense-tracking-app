@@ -104,6 +104,8 @@ new class extends Component
         $date = Carbon::create($this->selectedYear, $this->selectedMonth, 1)->subMonth();
         $this->selectedMonth = $date->month;
         $this->selectedYear = $date->year;
+
+        $this->loadDashboardData();
     }
 
     public function nextMonth()
@@ -111,6 +113,8 @@ new class extends Component
         $date = Carbon::create($this->selectedYear, $this->selectedMonth, 1)->addMonth();
         $this->selectedMonth = $date->month;
         $this->selectedYear = $date->year;
+
+        $this->loadDashboardData();
     }   
 
 };
