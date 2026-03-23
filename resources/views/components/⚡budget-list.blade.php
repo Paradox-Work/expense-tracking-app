@@ -151,7 +151,7 @@ new #[Title('Budgets')] class extends Component
                 </div>
                 <div>
                     <p class="text-sm text-gray-600 dark:text-gray-200 mb-1">Total Spent</p>
-                    <p class="text-2xl font-bold {{ $this->totalSpent > $this->totalBudget ? 'text-red-600' : 'text-white' }}">
+                    <p class="text-2xl font-bold {{ $this->totalSpent > $this->totalBudget ? 'text-red-600' : 'text-gray-400 dark:text-white' }}">
                         ${{ number_format($this->totalSpent, 2) }}
                     </p>
                 </div>
