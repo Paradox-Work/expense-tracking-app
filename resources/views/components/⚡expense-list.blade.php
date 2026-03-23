@@ -137,13 +137,21 @@ new #[Title('Expenses')] class extends Component
         $this->resetPage();
      }
 
-     public function clearFilters(){
+     public function resetFilters(){
         $this->search = '';
         $this->selectedCategory = '';
         $this->startDate = now()->startOfMonth()->format("Y-m-d");
         $this->endDate = now()->endOfMonth()->format("Y-m-d");
         $this->resetPage();
      }
+
+     public function clearFilters(){
+        $this->search = '';
+        $this->selectedCategory = '';
+        $this->startDate = '';
+        $this->endDate = '';
+        $this->resetPage();
+    }
 
     
 }
@@ -235,9 +243,15 @@ new #[Title('Expenses')] class extends Component
                         Showing {{ $this->expenses->count() }} of {{ $this->expenses->total() }} expenses
                         <span class="font-semibold text-gray-900 dark:text-gray-200">•  Total: ${{ number_format($this->total, 2) }}</span>
                     </div>
-                    <button wire:click="clearFilters" class="text-sm text-amber-400 hover:text-amber-600 font-medium dark:text-gray-200 dark:hover:text-gray-400">
+                    <div class="flex items-center justify-end gap-4">
+                    <button wire:click="resetFilters" class="text-sm text-amber-400 hover:text-amber-600 font-medium dark:text-gray-200 dark:hover:text-gray-400">
+                        Reset Filters
+                    </button>
+
+                    <button wire:click="clearFilters" class="text-sm text-red-400 hover:text-red-600 font-medium dark:text-gray-200 dark:hover:text-gray-400">
                         Clear Filters
                     </button>
+                    </div>
                 </div>
             @endif
         </div>
