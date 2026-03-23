@@ -227,6 +227,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script>
     document.addEventListener('livewire:navigated',function(){
+
+        const isDark = document.documentElement.classList.contains('dark');
+
+        const textColor = isDark ? '#d1d5db' : '#424242'; 
+        const gridColor = isDark ? '#6b7280' : '#4b5563';
+
         setTimeout(function() {
             // monthly Trend chart
             const trendCtx = document.getElementById('monthlyTrendChart').getContext('2d');
@@ -259,21 +265,21 @@
                         y: {
                             beginAtZero: true,
                             ticks: {
-                                color: '#e5e7eb',
+                                color: textColor,
                                 callback: function(value) {
                                     return '$' + value.toFixed(0);
                                 }
                             },
                             grid: {
-                                color: '#4b5563'
+                                color: gridColor 
                             }
                         },
                         x: {
                             ticks: {
-                                color: '#e5e7eb'
+                                color: textColor
                             },
                             grid: {
-                                color: '#4b5563'
+                                color: gridColor
                             }
                         }
                     }
@@ -290,7 +296,7 @@
                         data: @json($expenseByCategory->pluck('total')),
                         backgroundColor: @json($expenseByCategory->pluck('color')),
                         borderWidth: 2,
-                        borderColor: '#fff',
+                        borderColor: textColor,
                     }]
                 },
                 options: {
@@ -300,7 +306,7 @@
                         legend: {
                             position: 'right',
                             labels: {
-                                color: '#e5e7eb'
+                                color: textColor
                             }
                         }
                     }
