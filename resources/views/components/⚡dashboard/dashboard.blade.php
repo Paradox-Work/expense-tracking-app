@@ -296,7 +296,7 @@
                         data: @json($expenseByCategory->pluck('total')),
                         backgroundColor: @json($expenseByCategory->pluck('color')),
                         borderWidth: 2,
-                        borderColor: textColor,
+                        borderColor: gridColor,
                     }]
                 },
                 options: {
